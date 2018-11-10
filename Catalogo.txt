@@ -1,0 +1,16 @@
+-Catalogo de cuentas
+
+No de Cuenta: 1101 1232
+Nombre      : CAJA
+Tipo        : D
+
+
+Usuarios
+Nombre
+Contraseña
+status
+
+Catalogo Cuentas
+no de cuenta
+nombre
+tipo deudora o acredora
