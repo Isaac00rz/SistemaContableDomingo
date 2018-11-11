@@ -79,7 +79,7 @@ public class InicioSesion extends HttpServlet {
         Object[] usuario;
 
         conexionDB.iniciarConexion();
-        usuario = conexionDB.consultaCompleta("select nombre, contraseña from usuarios where nombre = '" + nombre + "' and "
+        usuario = conexionDB.consultaCompleta("select nombre, contraseña from usuario where nombre = '" + nombre + "' and "
                 + "contraseña = '" + pass + "'", 2);
         conexionDB.cerrarConexion();
         if (usuario != null) {
@@ -89,7 +89,7 @@ public class InicioSesion extends HttpServlet {
             }
             if (cont == 1) {
                 RequestDispatcher a;
-                a = request.getRequestDispatcher("/Vistas/Menu.jsp");
+                a = request.getRequestDispatcher("/Menu.jsp");
                 a.forward(request, response);
             } else {
                 RequestDispatcher a;

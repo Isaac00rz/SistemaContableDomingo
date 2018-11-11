@@ -1,3 +1,8 @@
+<%-- 
+    Document   : AltaCatalogo
+    Created on : 11/11/2018, 12:41:55 PM
+    Author     : IsaacUlises
+--%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
