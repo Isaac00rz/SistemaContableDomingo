@@ -1,4 +1,4 @@
-package Datos;
+package servlets;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
 
 public class conexionDB {
     public static Connection conexion;
@@ -19,7 +18,7 @@ public class conexionDB {
             conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/SistemaContable","root","");
             
         }catch(ClassNotFoundException | SQLException  e){
-            JOptionPane.showMessageDialog(null,"Error en la conexion iniciar");
+            System.out.println("Error en la conexion iniciar");
         }
     }
     
@@ -40,7 +39,7 @@ public class conexionDB {
             }
             return resultados;
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,"Error en la conexion consultar");
+            System.out.println("Error en la conexion consultar");
             return null;
         }
     }
@@ -51,7 +50,7 @@ public class conexionDB {
             at.executeUpdate(consulta);
             return true;
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,"Error en la conexion actualizar");
+            System.out.println("Error en la conexion actualizar");
             return false;
             
         }
@@ -63,7 +62,7 @@ public class conexionDB {
             at.execute(consulta);
             return true;
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,"Error en la conexion actualizar");
+            System.out.println("Error en la conexion actualizar");
             return false;
             
         }
@@ -72,7 +71,7 @@ public class conexionDB {
         try {
             conexion.close();
         } catch (SQLException ex) {
-           JOptionPane.showMessageDialog(null,"Error en el cierre de la conexion");
+           System.out.println("Error en el cierre de la conexion");
         }
     }
 }

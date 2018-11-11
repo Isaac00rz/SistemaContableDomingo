@@ -1,0 +1,33 @@
+Contabilidad
+
+Pantalla de Catalogo de cuentas:
+	No. Cuenta = 1101000
+	Nombre cuenta: "Caja"
+	Tipo: deudora/acredora
+
+1101  000 Caja  	Acumuladora
+1101  001 Caja chica  	Detalle
+1102  000 Banco
+1102  001 Banamex cto.	111025522
+1102  002 Banamex dol.	111225252
+1103  000 Clientes
+1103  001 Charlie 
+1103  002 Zap 3 Hermanos
+2101  000 Provedores
+2101  001 Calzado yuyin
+
+
+Tipos adeudoras, acredoras, gastos.
+
+
+Polizas ingresos, egresos, y de diario.
+
+
+Balanza, o saldos de cuentas, y dos reportes
+
+
+Catalogo de cuentas
+	ALta,baja,modificacion
+Polizas
+	Alta,baja,modificacion
+	
