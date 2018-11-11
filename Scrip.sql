@@ -12,7 +12,7 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
 create table CatalogoCuentas(
-noCuenta integer not null,
+noCuenta varchar(40) not null,
 nombre varchar(40) not null,
 tipo varchar(25) default 'acredora',
 descripcion varchar(250),
