@@ -1,3 +1,5 @@
+Hacerlo basado en el COI
+
 Contabilidad
 
 Pantalla de Catalogo de cuentas:
