@@ -1,6 +1,6 @@
 <%-- 
-    Document   : ModificacionCatalogo
-    Created on : 11/11/2018, 08:07:58 PM
+    Document   : BaCuenta
+    Created on : 11/11/2018, 10:33:46 PM
     Author     : IsaacUlises
 --%>
 
@@ -14,8 +14,9 @@
             /*la directiva include copia el contenido de un archivo y lo incrusta en la pagina*/
             <%@ include file="estilos/Barra.css" %>
             <%@ include file="estilos/fonts.css" %>
-            <%@ include file="estilos/tablas.css" %>
+            <%@ include file="estilos/Formulario.css" %>
         </style>
+        <% String noCuenta = request.getParameter("noCuenta"); %>
     <div id="navegador">
         <header>
             <nav>	
@@ -29,25 +30,19 @@
             </nav>
         </header>
     </div>
-    </head>
     <body>
-        <table>
-            <tr>
-                <th>No Cuenta</th>
-                <th>Nombre</th>
-                <th>Tipo</th>
-                <th>Accion</th>
-            </tr>
-            <% Object[] r = (Object[]) session.getAttribute("cuentas");
-            for (int i = 0; i < r.length; i=i+3) {%>
-        <tr>
-            <th><%= r[i]%></th>
-            <th><%= r[i+1]%></th>
-            <th><%= r[i+2]%></th>
-            <th><a href="BaCuenta.jsp?noCuenta=<%= r[i]%>">Baja</a></th>
-        <% }%>
-        </tr>    
-        </table>
+        <form  method="POST" action="BaCatalogo">
+    <fieldset>
+        <p>
+        <h1>¿Eliminar?</h1>
+            <label for ="noCuenta">No. Cuenta</label>: <input type="text" name = "noCuenta" id = "noCuenta" value ="<%=noCuenta%>"  disabled><br/> 
+            <label for ="noCuentaV"></label> <input type="hidden" name = "noCuentaV" id = "noCuentaV" value ="<%=noCuenta%>" >
+        <hr>
+        <div class = "boton">
+            <input type="submit" value="Borrar:" ></code>	
+        </div>
+        </p>
+    </fieldset>
+</form>
     </body>
 </html>
-

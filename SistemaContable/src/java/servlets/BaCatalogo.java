@@ -32,21 +32,19 @@ public class BaCatalogo extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String noCuenta = request.getParameter("noCuenta");
-
-        conexionDB.iniciarConexion();
-        if (conexionDB.actualizar("delete from catalogocuentas where noCuenta = '"+noCuenta+"';")) {
-            RequestDispatcher a;
-            request.getSession().setAttribute("nombre_param", "Borrado");
-            a = request.getRequestDispatcher("BajaCatalogo");
-            a.forward(request, response);
-        } else {
-            RequestDispatcher a;
-            request.getSession().setAttribute("nombre_param", "Error");
-            a = request.getRequestDispatcher("BajaCatalogo");
-            a.forward(request, response);
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet BaCatalogo</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet BaCatalogo at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
-        conexionDB.cerrarConexion();
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -75,7 +73,15 @@ public class BaCatalogo extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String noCuenta = request.getParameter("noCuentaV");
+
+        conexionDB.iniciarConexion();
+        if (conexionDB.actualizar("delete from catalogocuentas where noCuenta = '"+noCuenta+"';")) {
+            response.sendRedirect("BajaCatalogo");
+        } else {
+           response.sendRedirect("BajaCatalogo");
+        }
+        conexionDB.cerrarConexion();
     }
 
     /**

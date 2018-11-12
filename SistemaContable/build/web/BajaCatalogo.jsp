@@ -9,7 +9,7 @@
 <html>
         <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Modificacion Catalogo Cuentae</title>
+        <title>Baja Catalogo Cuentae</title>
         <style type="text/css" media="screen">
             /*la directiva include copia el contenido de un archivo y lo incrusta en la pagina*/
             <%@ include file="estilos/Barra.css" %>
@@ -44,7 +44,7 @@
             <th><%= r[i]%></th>
             <th><%= r[i+1]%></th>
             <th><%= r[i+2]%></th>
-            <th><a href="BaCuenta?noCuenta=<%= r[i]%>">Baja</a></th>
+            <th><a href="BaCuenta.jsp?noCuenta=<%= r[i]%>">Baja</a></th>
         <% }%>
         </tr>    
         </table>
