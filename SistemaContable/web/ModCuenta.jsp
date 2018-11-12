@@ -1,11 +1,12 @@
 <%-- 
-    Document   : AltaCatalogo
-    Created on : 11/11/2018, 12:41:55 PM
+    Document   : ModCuenta
+    Created on : 11/11/2018, 08:57:09 PM
     Author     : IsaacUlises
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -29,6 +30,7 @@
             </nav>
         </header>
     </div>
+    <% String noCuenta = request.getParameter("noCuenta"); %>
     <% String r = (String) session.getAttribute("nombre_param");
         if (r == null) { %>
     <h3></h3>
@@ -36,13 +38,15 @@
     <h1> <%=r%></h1>
     <% }%>
 </head>
-<form  method="POST" action="AltaCatalogo">
+<form  method="POST" action="ModCatalogo">
     <fieldset>
         <legend>Datos De la Cuenta</legend>
         <p>
-            <label for ="noCuenta">No. Cuenta</label>: <input type="text" name = "noCuenta" id = "noCuenta" size = "30" maxlength = "40" placeholder="No. Cuenta" autofocus required><br/> 
-            <label for ="nombre">Nombre</label>: <input type="text" name = "nombre" id = "nombre" size = "30" maxlength = "40" placeholder="Nombre" required><br/> 
+            <label for ="noCuenta">No. Cuenta</label>: <input type="text" name = "noCuenta" id = "noCuenta" size = "30" maxlength = "40" placeholder="No. Cuenta" value ="<%=noCuenta%>" required><br/> 
+            <label for ="noCuentaV"></label> <input type="hidden" name = "noCuentaV" id = "noCuentaV" value ="<%=noCuenta%>" >
+            <label for ="nombre">Nombre</label>: <input type="text" name = "nombre" id = "nombre" size = "30" maxlength = "40" placeholder="Nombre" required autofocus><br/> 
             <label for ="descripcion">Descripción</label>: <input type="text" name = "descripcion" id = "descripcion" size = "30" maxlength = "250" placeholder="Descripcion" required><br/> 
+            
         <hr>
         <p>Tipo</p>
         <label for="tipo">Adeudora</label><input type="radio" name="tipo" value="Adeudora" id="tipo" checked/><br/>

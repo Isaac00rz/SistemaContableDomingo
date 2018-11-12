@@ -1,0 +1,35 @@
+
+table{
+	width: 65%;
+	max-width:900px;
+	margin:2%;
+	margin-top: 25px;
+	box-shadow:0 5px 5px 3px rgba(0, 0, 0, 0.25);
+    border: 5px groove;
+}
+
+table tr:nth-child(even) {
+	background-color:  rgb(171, 239, 241);
+}
+ 
+table tr:nth-child(odd) {
+	background-color: #fff;
+}
+
+table > thead > tr > th{
+	text-align: left;
+	font-style: normal;
+	font-size: 30px;
+	color: rgb(0, 0, 0);
+	border: thick;
+	background-color:  rgb(241, 241, 241);
+}
+
+table > tbody > tr > td{
+	text-align: left;
+	font-size: 20px;
+	color: rgb(0, 0, 0);
+	border-left: 2px;
+	border-left-color: black;
+
+}

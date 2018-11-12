@@ -18,8 +18,9 @@
                     <ul> 
                         <li><a href="index.jsp"><span class="primero"><i class="icon icon-home"></i></span>HOME</a></li>
                         <li><a href="AltaCatalogo.jsp"><span class="segundo"><i class="icon icon-clipboard"> </i></span>Alta</a></li>
-                        <li><a href="BajaModCatalogo.jsp"><span class="tercero"><i class="icon icon-cloud"> </i></span>Baja/Modificacion</a></li>
-                        <li><a href="VerCatalogos.jsp"><span class="cuarto"><i class="icon icon-superscript"> </i></span>Ver</a></li>
+                        <li><a href="ModCatalogo"><span class="tercero"><i class="icon icon-cloud"> </i></span>Modificacion</a></li>
+                        <li><a href="BajaCatalogo"><span class="cuarto"><i class="icon icon-superscript"> </i></span>Baja</a></li>
+                        <li><a href="VerCatalogos.jsp"><span class="quinto"><i class="icon icon-superscript"> </i></span>Ver</a></li>
                     </ul>
                 </nav>
             </header>
