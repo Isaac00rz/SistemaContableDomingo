@@ -45,7 +45,7 @@
             <label for ="descripcion">Descripción</label>: <input type="text" name = "descripcion" id = "descripcion" size = "30" maxlength = "250" placeholder="Descripcion" required><br/> 
         <hr>
         <p>Tipo</p>
-        <label for="tipo">Adeudora</label><input type="radio" name="tipo" value="Adeudora" id="tipo" checked/><br/>
+        <label for="tipo">Deudora</label><input type="radio" name="tipo" value="Deudora" id="tipo" checked/><br/>
         <label for="tipo">Acredora</label><input type="radio" name="tipo" value="Acredora" id="tipo" /><br/>
         <hr>
         <div class = "boton">

@@ -5,7 +5,9 @@ table{
 	margin:2%;
 	margin-top: 25px;
 	box-shadow:0 5px 5px 3px rgba(0, 0, 0, 0.25);
-    border: 5px groove;
+	border: 5px groove;
+	text-align: right;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
 }
 
 table tr:nth-child(even) {

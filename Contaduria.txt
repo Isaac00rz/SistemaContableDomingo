@@ -32,4 +32,43 @@ Catalogo de cuentas
 	ALta,baja,modificacion
 Polizas
 	Alta,baja,modificacion
-	
+
+
+La contaduria es por mes
+perido 01 = Enero
+periodo 02 = Febrero...
+
+
+Al ver una cuenta general se muestra: 
+Cliente:
+Nombre: 
+Naturaleza:
+
+Tipo: 	Cargos:		Abonos: 	Saldos:	
+
+
+
+
+
+
+
+Poliza:
+Si los cargos y abonos no estan correctos no se debe de dejar guardar.
+Ingresos egresos y de diario.
+
+No.Cuenta Nombre: Folio: Concepto Cargo Abono.
+
+
+
+Solo 3
+
+Balanza de comprobacion:
+
+Diarios general:
+son ver los movimientos de las polizas por periodo.
+
+Estado de resultado:
+Son los movimientos de todas las cuentas por separado.
+
+
+Poliza de ingresos, egresos, diario, compras, ventas
