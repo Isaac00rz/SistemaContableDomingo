@@ -31,6 +31,7 @@ haber double,
 concepto varchar(200),
 noCuenta integer,
 PRIMARY KEY (id_Poliza),
+CONSTRAINT Polizas_fk
 FOREIGN KEY (noCuenta)
 REFERENCES SistemaContable.CatalogoCuentas(noCuenta)
 ON DELETE NO ACTION ON UPDATE NO ACTION
