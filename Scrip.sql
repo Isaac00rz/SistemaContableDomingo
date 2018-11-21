@@ -12,7 +12,7 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
 CREATE TABLE CatalogoCuentas(
-noCuenta integer NOT NULL,
+noCuenta varchar(40) NOT NULL,
 nombre varchar(40) NOT NULL,
 tipo varchar(25) DEFAULT 'acredora',
 descripcion varchar(250),
@@ -29,12 +29,15 @@ periodo int  NOT NULL,
 debe double,
 haber double,
 concepto varchar(200),
-noCuenta integer,
+noCuenta varchar(40) not null,
 PRIMARY KEY (id_Poliza),
-CONSTRAINT Polizas_fk
+CONSTRAINT polizas_f
 FOREIGN KEY (noCuenta)
-REFERENCES SistemaContable.CatalogoCuentas(noCuenta)
-ON DELETE NO ACTION ON UPDATE NO ACTION
-)
+REFERENCES SistemaContable.CatalogoCuentas (noCuenta)
+ON DELETE NO ACTION 
+ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
+
+
+
