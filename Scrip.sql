@@ -1,22 +1,39 @@
-create DATABASE SistemaContable DEFAULT CHARACTER SET utf8 ;
+CREATE DATABASE SistemaContable DEFAULT CHARACTER SET utf8 ;
 
-use SistemaContable;
+USE SistemaContable;
 
-create table Usuario(
-id_usuario  integer not null auto_increment,
-nombre varchar(25) not null,
+CREATE TABLE Usuario(
+id_usuario  integer NOT NULL auto_increment,
+nombre varchar(25) NOT NULL,
 contraseña varchar(30),
 PRIMARY KEY (id_usuario)
 )
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
-create table CatalogoCuentas(
-noCuenta varchar(40) not null,
-nombre varchar(40) not null,
-tipo varchar(25) default 'acredora',
+CREATE TABLE CatalogoCuentas(
+noCuenta integer NOT NULL,
+nombre varchar(40) NOT NULL,
+tipo varchar(25) DEFAULT 'acredora',
 descripcion varchar(250),
 PRIMARY KEY (NoCuenta)
+)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+CREATE TABLE Polizas(
+id_Poliza int auto_increment,
+tipo varchar (15) NOT NULL,
+fecha date ,
+periodo int  NOT NULL,
+debe money,
+haber money,
+concepto varchar(200),
+noCuenta integer,
+PRIMARY KEY (id_Poliza),
+FOREIGN KEY (noCuenta)
+REFERENCES SistemaContable.CatalogoCuentas(noCuenta)
+ON DELETE NO ACTION ON UPDATE NO ACTION
 )
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
