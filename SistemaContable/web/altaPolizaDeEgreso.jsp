@@ -56,9 +56,8 @@
             function agregar() {
                 cont++;
                 var fila = '<tr>';
-                fila += '<td style="width: 7.0%; min-width: 7.0%;"><input type="text" name="cuenta[]" maxlength = "25" placeholder="Cuenta" required style="text-align: center; min-width: 100%; width:100%;"></td>';
-                fila += '<td style="width: 7.0%; min-width: 7.0%;"><input type="text" name="nombre[]" maxlength = "20" placeholder="Nombre"  style="text-align: center; min-width: 100%; width:100%;"></td>'
-                fila += '<td style="width: 7.0%; min-width: 7.0%;"><input type="text"name="concepto[]" maxlength = "20" placeholder="Concepto "  style="text-align: center; min-width: 100%; width:100%;"></td>'
+                fila += '<td style="width: 7.0%; min-width: 7.0%;"><select name="cuenta[]" required> <%Object[] r = (Object[]) session.getAttribute("cuentas");Object[] s = (Object[]) session.getAttribute("valor"); Object[] t = (Object[]) session.getAttribute("nombres");  for (int i = 0; i < r.length; i++) {%><option value = "<%=s[i]%>"><%=r[i]%> </option><%}%></select></td>';
+                fila += '<td style="width: 7.0%; min-width: 7.0%;"><input type="text" name="concepto[]" maxlength = "20" placeholder="Concepto "  style="text-align: center; min-width: 100%; width:100%;"></td>'
                 fila += '<td style="width: 7.0%; min-width: 7.0%;"><input type="text" name="abono[]" maxlength="30" placeholder="Abono"  style="text-align: center; min-width: 100%; width:100%;" onchange="SumarAutomatico(this.id);"></td>'
                 fila += '<td style="width: 7.0%; min-width: 7.0%;"><input type="text" name="cargo[]" maxlength="25" placeholder="Cargo"  style="text-align: center; min-width: 100%; width:100%;" onchange="SumarAutomatico2(this.value);"></td>'
                 fila += '</tr>'
@@ -100,20 +99,19 @@
         <section class="contenido">
             <button id="bt_add" class="btn btn-default">Agregar</button>
             <button id="bt_delall" class="btn btn-default">Eliminar todo</button>
-            <form role="form" name="form" method="post" action="AltaPolizaEgreso">
+            <form role="form" name="form" id = "form" method="post" action="AltaPolizaEgreso">
                 <table border="1" id="tabla" style="display:inline-block;">
                     <thead>
                         <tr id="cabecera">
-                            <td class="tds">Cuenta</td>
-                            <td class="tds">Nombre</td>
+                            <td class="tds">Cuenta/Nombre</td>
                             <td class="tds">Concepto</td>
                             <td class="tds">Abono</td>
                             <td class="tds">Cargo</td>
                         </tr>
-                        <tr>
-                            <td style="width: 7.0%; min-width: 7.0%;"><input type="text" name="cuenta[]" maxlength = "25" placeholder="Cuenta" required style="text-align: center; min-width: 100%; width:100%;"></td>
-                            <td style="width: 7.0%; min-width: 7.0%;"><input type="text" name="nombre[]" maxlength = "20" placeholder="Nombre"  style="text-align: center; min-width: 100%; width:100%;"></td>
-                            <td style="width: 7.0%; min-width: 7.0%;"><input type="text"name="concepto[]" maxlength = "20" placeholder="Concepto "  style="text-align: center; min-width: 100%; width:100%;"></td>
+                        
+                        <tr id = "cuerpo">
+                            <td style="width: 7.0%; min-width: 7.0%;"><select name="cuenta[]" required> <%for (int i = 0; i < r.length; i++) {%><option value = "<%=s[i]%>"><%=r[i]%> </option><%}%></select></td>
+                            <td style="width: 7.0%; min-width: 7.0%;"><input type="text" name="concepto[]" maxlength = "20" placeholder="Concepto "  style="text-align: center; min-width: 100%; width:100%;"></td>
                             <td style="width: 7.0%; min-width: 7.0%;"><input type="text" name="abono[]" maxlength="30" placeholder="Abono"  style="text-align: center; min-width: 100%; width:100%;" onchange="SumarAutomatico(this.value);"></td>
                             <td style="width: 7.0%; min-width: 7.0%;"><input type="text" name="cargo[]" maxlength="25" placeholder="Cargo"  style="text-align: center; min-width: 100%; width:100%;" onchange="SumarAutomatico2(this.value);"></td>
                         </tr>
@@ -128,12 +126,15 @@
     <script type="text/javascript">
         /* Funcion suma. */
         function SumarAutomatico(valor) {
-            
-            var a = 0;
-            for (var i = 0; i < valor.length; i++) {
-                a = a + parseInt(document.getElementById(abono[i]).value);
-        }
-            document.getElementById('MiTotal').innerHTML = a;
+           var TotalSuma = 0;
+            valor = parseFloat(valor); // Convertir a numero entero (número).
+            TotalSuma = document.getElementById('MiTotal').innerHTML;
+            // Valida y pone en cero "0".
+            TotalSuma = (TotalSuma == null || TotalSuma == undefined || TotalSuma == "") ? 0 : TotalSuma;
+            /* Variable genrando la suma. */
+            TotalSuma = (parseFloat(TotalSuma) + parseFloat(valor));
+            // Escribir el resultado en una etiqueta "span".
+            document.getElementById('MiTotal').innerHTML = TotalSuma;
         }
 
     </script>
@@ -141,12 +142,12 @@
         /* Funcion suma. */
         function SumarAutomatico2(valor) {
             var TotalSuma = 0;
-            valor = parseInt(valor); // Convertir a numero entero (número).
+            valor = parseFloat(valor); // Convertir a numero entero (número).
             TotalSuma = document.getElementById('MiTotal2').innerHTML;
             // Valida y pone en cero "0".
             TotalSuma = (TotalSuma == null || TotalSuma == undefined || TotalSuma == "") ? 0 : TotalSuma;
             /* Variable genrando la suma. */
-            TotalSuma = (parseInt(TotalSuma) + parseInt(valor));
+            TotalSuma = (parseFloat(TotalSuma) + parseFloat(valor));
             // Escribir el resultado en una etiqueta "span".
             document.getElementById('MiTotal2').innerHTML = TotalSuma;
         }
@@ -154,15 +155,15 @@
     </script>
     <script type="text/javascript">
         function comprobar(){
-            var TotalSumaA = 0;
+           /* var TotalSumaA = 0;
             var TotalSumaC = 0;
             TotalSumaA = document.getElementById('MiTotal').innerHTML;
             TotalSumaC = document.getElementById('MiTotal2').innerHTML;
-            if(parseInt(TotalSumaA)=== parseInt(TotalSumaC)){
-                document.getElementById("mi_form").submit();
-            }else{
+            if(parseInt(TotalSumaA)=== parseInt(TotalSumaC)){*/
+                document.getElementById("form").submit();
+            /*}else{
                 alert("Las sumas no coinciden");
-            }
+            }*/
             
         }
         
