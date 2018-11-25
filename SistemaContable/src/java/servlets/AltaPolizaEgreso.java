@@ -6,7 +6,6 @@
 package servlets;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -32,7 +31,7 @@ public class AltaPolizaEgreso extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Object[] cuenta,valor;
+        Object[] cuenta, valor;
         conexionDB.iniciarConexion();
         cuenta = conexionDB.consultaCompleta("select CONCAT(noCuenta,' ',nombre) from catalogocuentas", 1);
         valor = conexionDB.consultaCompleta("select noCuenta from catalogocuentas", 1);
@@ -40,6 +39,7 @@ public class AltaPolizaEgreso extends HttpServlet {
         RequestDispatcher a;
         request.getSession().setAttribute("cuentas", cuenta);
         request.getSession().setAttribute("valor", valor);
+        request.getSession().setAttribute("va", "-");
         a = request.getRequestDispatcher("/altaPolizaDeEgreso.jsp");
         a.forward(request, response);
     }
@@ -74,7 +74,57 @@ public class AltaPolizaEgreso extends HttpServlet {
         String[] concepto = request.getParameterValues("concepto[]");
         String[] abono = request.getParameterValues("abono[]");
         String[] cargo = request.getParameterValues("cargo[]");
+        Object[] dato;
+        String periodo = request.getParameter("periodo");
+        String consulta = "";
+        String id = "";
+        float car = 0, abo = 0;
+        for (int i = 0; i < abono.length; i++) {
+            car = car + Float.parseFloat(cargo[i]);
+            abo = abo + Float.parseFloat(abono[i]);
+        }
         
+        if (car == abo) {
+            consulta = "insert into Polizas values (null,'Egreso',NOW()," + periodo + ");";
+            conexionDB.iniciarConexion();
+            conexionDB.insertar(consulta);
+            consulta = "select id_poliza from polizas order by id_poliza desc limit 1";
+            dato = conexionDB.consultaCompleta(consulta, 1);
+            id = dato[0].toString();
+            for (int i = 0; i < cuenta.length; i++) {
+                consulta = "insert into PolizasCargos values ("+id+","+abono[i]+"," + cargo[i] + ",'" + concepto[i] + "','"+cuenta[i]+"');";
+                conexionDB.insertar(consulta);
+            }
+            conexionDB.cerrarConexion();
+            
+            Object[] cuenta2, valor;
+            conexionDB.iniciarConexion();
+            cuenta2 = conexionDB.consultaCompleta("select CONCAT(noCuenta,' ',nombre) from catalogocuentas", 1);
+            valor = conexionDB.consultaCompleta("select noCuenta from catalogocuentas", 1);
+            conexionDB.cerrarConexion();
+            RequestDispatcher a;
+            
+            request.getSession().setAttribute("cuentas", cuenta2);
+            request.getSession().setAttribute("valor", valor);
+            request.getSession().setAttribute("va", "Capturado");
+            a = request.getRequestDispatcher("/altaPolizaDeEgreso.jsp");
+            a.forward(request, response);
+            
+        } else {
+            Object[] cuenta2, valor;
+            conexionDB.iniciarConexion();
+            cuenta2 = conexionDB.consultaCompleta("select CONCAT(noCuenta,' ',nombre) from catalogocuentas", 1);
+            valor = conexionDB.consultaCompleta("select noCuenta from catalogocuentas", 1);
+            conexionDB.cerrarConexion();
+            RequestDispatcher a;
+            
+            request.getSession().setAttribute("cuentas", cuenta2);
+            request.getSession().setAttribute("valor", valor);
+            request.getSession().setAttribute("va", "No capturado, no coindicen los montos");
+            a = request.getRequestDispatcher("/altaPolizaDeEgreso.jsp");
+            a.forward(request, response);
+        }
+
     }
 
     /**

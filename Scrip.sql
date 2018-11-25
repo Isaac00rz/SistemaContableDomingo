@@ -21,12 +21,25 @@ PRIMARY KEY (NoCuenta)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
+CREATE TABLE CatalogoCuentasMovimientos(
+noCuenta varchar(40) NOT NULL,
+debe double,
+haber double,
+PRIMARY KEY (NoCuenta),
+CONSTRAINT CatalogoMovi_F
+FOREIGN KEY (noCuenta)
+REFERENCES SistemaContable.CatalogoCuentas (noCuenta)
+ON DELETE NO ACTION 
+ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
 CREATE TABLE Polizas(
 id_Poliza int auto_increment,
 tipo varchar (15) NOT NULL,
 fecha date ,
 periodo int  NOT NULL,
-concepto varchar(200),
 PRIMARY KEY (id_Poliza)
 )
 ENGINE = InnoDB
@@ -34,8 +47,9 @@ DEFAULT CHARACTER SET = utf8;
 
 CREATE TABLE PolizasCargos(
 id_Poliza int,
-debe double,
-haber double,
+abono double,
+cargo double,
+concepto varchar(200),
 noCuenta varchar(40) not null,
 CONSTRAINT polizasCargos_Cuenta_f
 FOREIGN KEY (noCuenta)

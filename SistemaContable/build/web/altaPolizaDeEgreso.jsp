@@ -56,7 +56,9 @@
             function agregar() {
                 cont++;
                 var fila = '<tr>';
-                fila += '<td style="width: 7.0%; min-width: 7.0%;"><select name="cuenta[]" required> <%Object[] r = (Object[]) session.getAttribute("cuentas");Object[] s = (Object[]) session.getAttribute("valor"); Object[] t = (Object[]) session.getAttribute("nombres");  for (int i = 0; i < r.length; i++) {%><option value = "<%=s[i]%>"><%=r[i]%> </option><%}%></select></td>';
+                fila += '<td style="width: 7.0%; min-width: 7.0%;"><select name="cuenta[]" required> <%Object[] r = (Object[]) session.getAttribute("cuentas");
+                    Object[] s = (Object[]) session.getAttribute("valor");
+                    for (int i = 0; i < r.length; i++) {%><option value = "<%=s[i]%>"><%=r[i]%> </option><%}%></select></td>';
                 fila += '<td style="width: 7.0%; min-width: 7.0%;"><input type="text" name="concepto[]" maxlength = "20" placeholder="Concepto "  style="text-align: center; min-width: 100%; width:100%;"></td>'
                 fila += '<td style="width: 7.0%; min-width: 7.0%;"><input type="text" name="abono[]" maxlength="30" placeholder="Abono"  style="text-align: center; min-width: 100%; width:100%;" onchange="SumarAutomatico(this.id);"></td>'
                 fila += '<td style="width: 7.0%; min-width: 7.0%;"><input type="text" name="cargo[]" maxlength="25" placeholder="Cargo"  style="text-align: center; min-width: 100%; width:100%;" onchange="SumarAutomatico2(this.value);"></td>'
@@ -90,6 +92,13 @@
                 </nav>
             </header>
         </div>
+        <% String a = (String) session.getAttribute("va");
+            if (a == null) { %>
+        <h3></h3>
+        <% } else {%>
+        <h1> <%=a%></h1>
+        <% }%>
+        
         <% Date date = new Date();
             DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
             String fecha = "Fecha: " + dateFormat.format(date);%>
@@ -100,6 +109,20 @@
             <button id="bt_add" class="btn btn-default">Agregar</button>
             <button id="bt_delall" class="btn btn-default">Eliminar todo</button>
             <form role="form" name="form" id = "form" method="post" action="AltaPolizaEgreso">
+                <select name="periodo">
+                    <option value ="1">01-Enero</option>
+                    <option value ="2">02-Febrero</option>
+                    <option value ="3">03-Marzo</option>
+                    <option value ="4">04-Abril</option>
+                    <option value ="5">05-Mayo</option>
+                    <option value ="6">06-Junio</option>
+                    <option value ="7">07-Julio</option>
+                    <option value ="8">08-Agosto</option>
+                    <option value ="9">09-Semptiembre</option>
+                    <option value ="10">10-Octubre</option>
+                    <option value ="11">11-Novimebre</option>
+                    <option value ="12">12-Diciembre</option>
+                </select>
                 <table border="1" id="tabla" style="display:inline-block;">
                     <thead>
                         <tr id="cabecera">
@@ -108,7 +131,7 @@
                             <td class="tds">Abono</td>
                             <td class="tds">Cargo</td>
                         </tr>
-                        
+
                         <tr id = "cuerpo">
                             <td style="width: 7.0%; min-width: 7.0%;"><select name="cuenta[]" required> <%for (int i = 0; i < r.length; i++) {%><option value = "<%=s[i]%>"><%=r[i]%> </option><%}%></select></td>
                             <td style="width: 7.0%; min-width: 7.0%;"><input type="text" name="concepto[]" maxlength = "20" placeholder="Concepto "  style="text-align: center; min-width: 100%; width:100%;"></td>
@@ -126,7 +149,7 @@
     <script type="text/javascript">
         /* Funcion suma. */
         function SumarAutomatico(valor) {
-           var TotalSuma = 0;
+            var TotalSuma = 0;
             valor = parseFloat(valor); // Convertir a numero entero (número).
             TotalSuma = document.getElementById('MiTotal').innerHTML;
             // Valida y pone en cero "0".
@@ -154,18 +177,18 @@
 
     </script>
     <script type="text/javascript">
-        function comprobar(){
-           /* var TotalSumaA = 0;
-            var TotalSumaC = 0;
-            TotalSumaA = document.getElementById('MiTotal').innerHTML;
-            TotalSumaC = document.getElementById('MiTotal2').innerHTML;
-            if(parseInt(TotalSumaA)=== parseInt(TotalSumaC)){*/
-                document.getElementById("form").submit();
+        function comprobar() {
+            /* var TotalSumaA = 0;
+             var TotalSumaC = 0;
+             TotalSumaA = document.getElementById('MiTotal').innerHTML;
+             TotalSumaC = document.getElementById('MiTotal2').innerHTML;
+             if(parseInt(TotalSumaA)=== parseInt(TotalSumaC)){*/
+            document.getElementById("form").submit();
             /*}else{
-                alert("Las sumas no coinciden");
-            }*/
-            
+             alert("Las sumas no coinciden");
+             }*/
+
         }
-        
+
     </script>
 </html>
