@@ -1,3 +1,6 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.text.DateFormat"%>
+<%@page import="java.util.Date"%>
 <!DOCTYPE HTML>
 <html lang="es">
     <head>
@@ -8,10 +11,69 @@
             /*la directiva include copia el contenido de un archivo y lo incrusta en la pagina*/
             <%@ include file="estilos/Barra.css" %>
             <%@ include file="estilos/fonts.css" %>
-            <%@ include file="estilos/tablaPoliza.css" %>
-               
+            <%@ include file="estilos/tablaDatos.css" %>
+
         </style>
-        <script src="js/tablaPoliza.js"></script>
+        <script src="js/jquery-2.1.1.min.js"></script>
+        <script src="js/bootstrap.js"></script>
+        <style>
+            #content{
+                position: absolute;
+                min-height: 50%;
+                width: 80%;
+                top: 20%;
+                left: 5%;
+            }
+
+            .selected{
+                cursor: pointer;
+            }
+            .selected:hover{
+                background-color: #0585C0;
+                color: white;
+            }
+            .seleccionada{
+                background-color: #0585C0;
+                color: white;
+            }
+        </style>
+        <script>
+            $(document).ready(function () {
+                $('#bt_add').click(function () {
+                    agregar();
+                });
+                $('#bt_del').click(function () {
+                    eliminar(id_fila_selected);
+                });
+                $('#bt_delall').click(function () {
+                    eliminarTodasFilas();
+                });
+
+
+            });
+            var cont = 0;
+            var id_fila_selected = [];
+            function agregar() {
+                cont++;
+                var fila = '<tr>';
+                fila += '<td style="width: 7.0%; min-width: 7.0%;"><input type="text" name="cuenta[]" maxlength = "25" placeholder="Cuenta" required style="text-align: center; min-width: 100%; width:100%;"></td>';
+                fila += '<td style="width: 7.0%; min-width: 7.0%;"><input type="text" name="nombre[]" maxlength = "20" placeholder="Nombre"  style="text-align: center; min-width: 100%; width:100%;"></td>'
+                fila += '<td style="width: 7.0%; min-width: 7.0%;"><input type="text"name="concepto[]" maxlength = "20" placeholder="Concepto "  style="text-align: center; min-width: 100%; width:100%;"></td>'
+                fila += '<td style="width: 7.0%; min-width: 7.0%;"><input type="text" name="abono[]" maxlength="30" placeholder="Abono"  style="text-align: center; min-width: 100%; width:100%;" onchange="SumarAutomatico(this.id);"></td>'
+                fila += '<td style="width: 7.0%; min-width: 7.0%;"><input type="text" name="cargo[]" maxlength="25" placeholder="Cargo"  style="text-align: center; min-width: 100%; width:100%;" onchange="SumarAutomatico2(this.value);"></td>'
+                fila += '</tr>'
+                $('#tabla').append(fila);
+
+            }
+            function eliminarTodasFilas() {
+                $('#tabla tbody tr').each(function () {
+                    $(this).remove();
+                });
+
+            }
+
+
+        </script>
     </head>
 
     <body>
@@ -29,34 +91,80 @@
                 </nav>
             </header>
         </div>
-        <title>Alta De Poliza de Egreso</title>
+        <% Date date = new Date();
+            DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            String fecha = "Fecha: " + dateFormat.format(date);%>
+        <title>Alta De Poliza de Egreso></title>
         <h4>Poliza de Egreso</h4>
+        <h4> <%=fecha%></h4>
         <section class="contenido">
-            <form role="form" name="form" method="post" action="">
-                <table border="1" id="tab" style="display:inline-block;">
-                    <tr id="cabecera">
-                        <td class="tds">Cuenta</td>
-                        <td class="tds">Nombre</td>
-                        <td class="tds">Folio</td>
-                        <td class="tds">Concepto</td>
-                        <td class="tds">Abono</td>
-                        <td class="tds">Cargo</td>
-                        <td class="tds">Eliminar</td>
-                    </tr>
-                    <tr>
-                        <td class="tds"><input class="inputs" type="text" name="cuenta[]" maxlength = "20" placeholder="Cuenta" required></td>
-                        <td class="tds"><input class="inputs" type="text" name="nombre[]" maxlength = "20" placeholder="Nombre " required></td>
-                        <td class="tds"><input class="inputs" type="text" name="folio[]" maxlength = "20" placeholder="Folio" required></td>
-                        <td class="tds"><input class="inputs" type="text" name="concepto[]" maxlength="30" placeholder="Concepto" required></td>
-                        <td class="tds"><input class="inputs" type="text" name="abono[]" maxlength="25" placeholder="Abono" required></td>
-                        <td class="tds"><input class="inputs" type="text" name="cargo[]" maxlength="25" placeholder="Cargo" required></td>
-                        <td class="tds"><input class="inputs" type="reset" class="noEliminar" value="Eliminar" /></td>
-                    </tr>
-
+            <button id="bt_add" class="btn btn-default">Agregar</button>
+            <button id="bt_delall" class="btn btn-default">Eliminar todo</button>
+            <form role="form" name="form" method="post" action="AltaPolizaEgreso">
+                <table border="1" id="tabla" style="display:inline-block;">
+                    <thead>
+                        <tr id="cabecera">
+                            <td class="tds">Cuenta</td>
+                            <td class="tds">Nombre</td>
+                            <td class="tds">Concepto</td>
+                            <td class="tds">Abono</td>
+                            <td class="tds">Cargo</td>
+                        </tr>
+                        <tr>
+                            <td style="width: 7.0%; min-width: 7.0%;"><input type="text" name="cuenta[]" maxlength = "25" placeholder="Cuenta" required style="text-align: center; min-width: 100%; width:100%;"></td>
+                            <td style="width: 7.0%; min-width: 7.0%;"><input type="text" name="nombre[]" maxlength = "20" placeholder="Nombre"  style="text-align: center; min-width: 100%; width:100%;"></td>
+                            <td style="width: 7.0%; min-width: 7.0%;"><input type="text"name="concepto[]" maxlength = "20" placeholder="Concepto "  style="text-align: center; min-width: 100%; width:100%;"></td>
+                            <td style="width: 7.0%; min-width: 7.0%;"><input type="text" name="abono[]" maxlength="30" placeholder="Abono"  style="text-align: center; min-width: 100%; width:100%;" onchange="SumarAutomatico(this.value);"></td>
+                            <td style="width: 7.0%; min-width: 7.0%;"><input type="text" name="cargo[]" maxlength="25" placeholder="Cargo"  style="text-align: center; min-width: 100%; width:100%;" onchange="SumarAutomatico2(this.value);"></td>
+                        </tr>
+                    </thead>
                 </table>
-                <button id="add" type="button" ><b>Añadir registro</b></button>
-                <button id="aceptar" name="aceptar" type="submit" 
+                <button id="aceptar" name="aceptar" type="button" onclick="comprobar();" 
                         ><b>Insertar registros</b></button>
             </form>
-        </body>
+            <span>Total Abonos: </span> <span id="MiTotal"></span> </br>
+            <span>Total cargos: </span> <span id="MiTotal2"></span>
+    </body>
+    <script type="text/javascript">
+        /* Funcion suma. */
+        function SumarAutomatico(valor) {
+            
+            var a = 0;
+            for (var i = 0; i < valor.length; i++) {
+                a = a + parseInt(document.getElementById(abono[i]).value);
+        }
+            document.getElementById('MiTotal').innerHTML = a;
+        }
+
+    </script>
+    <script type="text/javascript">
+        /* Funcion suma. */
+        function SumarAutomatico2(valor) {
+            var TotalSuma = 0;
+            valor = parseInt(valor); // Convertir a numero entero (número).
+            TotalSuma = document.getElementById('MiTotal2').innerHTML;
+            // Valida y pone en cero "0".
+            TotalSuma = (TotalSuma == null || TotalSuma == undefined || TotalSuma == "") ? 0 : TotalSuma;
+            /* Variable genrando la suma. */
+            TotalSuma = (parseInt(TotalSuma) + parseInt(valor));
+            // Escribir el resultado en una etiqueta "span".
+            document.getElementById('MiTotal2').innerHTML = TotalSuma;
+        }
+
+    </script>
+    <script type="text/javascript">
+        function comprobar(){
+            var TotalSumaA = 0;
+            var TotalSumaC = 0;
+            TotalSumaA = document.getElementById('MiTotal').innerHTML;
+            TotalSumaC = document.getElementById('MiTotal2').innerHTML;
+            if(parseInt(TotalSumaA)=== parseInt(TotalSumaC)){
+                document.getElementById("mi_form").submit();
+            }else{
+                alert("Las sumas no coinciden");
+            }
+            
+        }
+        
+    </script>
 </html>

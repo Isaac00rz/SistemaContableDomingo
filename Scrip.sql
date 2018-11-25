@@ -26,18 +26,27 @@ id_Poliza int auto_increment,
 tipo varchar (15) NOT NULL,
 fecha date ,
 periodo int  NOT NULL,
+concepto varchar(200),
+PRIMARY KEY (id_Poliza)
+)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+CREATE TABLE PolizasCargos(
+id_Poliza int,
 debe double,
 haber double,
-concepto varchar(200),
 noCuenta varchar(40) not null,
-PRIMARY KEY (id_Poliza),
-CONSTRAINT polizas_f
+CONSTRAINT polizasCargos_Cuenta_f
 FOREIGN KEY (noCuenta)
 REFERENCES SistemaContable.CatalogoCuentas (noCuenta)
+ON DELETE NO ACTION 
+ON UPDATE NO ACTION,
+CONSTRAINT polizasCargos_f
+FOREIGN KEY (id_Poliza)
+REFERENCES SistemaContable.Polizas (id_Poliza)
 ON DELETE NO ACTION 
 ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
-
-
 
