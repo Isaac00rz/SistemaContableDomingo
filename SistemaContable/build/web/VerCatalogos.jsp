@@ -7,9 +7,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-        <head>
+    <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Ver Catalogo Cuentae</title>
+        <title>Mod/Baja de Polizas</title>
         <style type="text/css" media="screen">
             /*la directiva include copia el contenido de un archivo y lo incrusta en la pagina*/
             <%@ include file="estilos/Barra.css" %>
@@ -29,24 +29,30 @@
             </nav>
         </header>
     </div>
-    </head>
-    <body>
-        <table>
-            <tr>
-                <th>No Cuenta</th>
-                <th>Nombre</th>
-                <th>Tipo</th>
-                <th>Descripción</th>
-            </tr>
-            <% Object[] r = (Object[]) session.getAttribute("cuentas");
-            for (int i = 0; i < r.length; i=i+4) {%>
+</head>
+<% String a = (String) session.getAttribute("va2");
+        if (a == null) { %>
+<h3></h3>
+<% } else {%>
+<h1> <%=a%></h1>
+<% }%>
+<body>
+    <table>
+        <tr>
+            <th>No Cuenta</th>
+            <th>Nombre</th>
+            <th>Tipo</th>
+            <th>Descripción</th>
+        </tr>
+        <% Object[] r = (Object[]) session.getAttribute("cuentas");
+                for (int i = 0; i < r.length; i = i + 4) {%>
         <tr>
             <th><%= r[i]%></th>
-            <th><%= r[i+1]%></th>
-            <th><%= r[i+2]%></th>
-            <th><%= r[i+3]%></th>
-        <% }%>
+            <th><%= r[i + 1]%></th>
+            <th><%= r[i + 2]%></th>
+            <th><%= r[i + 3]%></th>
+                <% }%>
         </tr>    
-        </table>
-    </body>
+    </table>
+</body>
 </html>

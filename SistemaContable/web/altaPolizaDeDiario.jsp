@@ -93,7 +93,7 @@
                 </nav>
             </header>
         </div>
-        <% String a = (String) session.getAttribute("va");
+        <% String a = (String) session.getAttribute("va2");
             if (a == null) { %>
         <h3></h3>
         <% } else {%>
@@ -103,13 +103,13 @@
         <% Date date = new Date();
             DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
             String fecha = "Fecha: " + dateFormat.format(date);%>
-        <title>Alta De Poliza de Egreso></title>
-        <h4>Poliza de Egreso</h4>
+        <title>Alta De Poliza de Diario></title>
+        <h4>Poliza de Diario</h4>
         <h4> <%=fecha%></h4>
         <section class="contenido">
             <button id="bt_add" class="btn btn-default">Agregar</button>
             <button id="bt_delall" class="btn btn-default">Eliminar todo</button>
-            <form role="form" name="form" id = "form" method="post" action="AltaPolizaEgreso">
+            <form role="form" name="form" id = "form" method="post" action="AltaPolizaDiario">
                 <select name="periodo">
                     <option value ="1">01-Enero</option>
                     <option value ="2">02-Febrero</option>
