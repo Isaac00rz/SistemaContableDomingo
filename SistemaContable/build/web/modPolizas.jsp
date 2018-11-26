@@ -62,6 +62,7 @@
                 fila += '<td style="width: 7.0%; min-width: 7.0%;"><input type="text" name="concepto[]" maxlength = "20" placeholder="Concepto "  style="text-align: center; min-width: 100%; width:100%;"></td>'
                 fila += '<td style="width: 7.0%; min-width: 7.0%;"><input type="text" name="abono[]" maxlength="30" placeholder="Abono"  style="text-align: center; min-width: 100%; width:100%;" onchange="SumarAutomatico(this.value);"></td>'
                 fila += '<td style="width: 7.0%; min-width: 7.0%;"><input type="text" name="cargo[]" maxlength="25" placeholder="Cargo"  style="text-align: center; min-width: 100%; width:100%;" onchange="SumarAutomatico2(this.value);"></td>'
+                fila += '<td style="width: 7.0%; min-width: 7.0%;"><input type="button" class="borrar" value="Eliminar" style="min-width: 100%; width:100%;"/></td>'
                 fila += '</tr>'
                 $('#tabla').append(fila);
 
@@ -72,7 +73,10 @@
                 });
 
             }
-
+            $(document).on('click', '.borrar', function (event) {
+                event.preventDefault();
+                $(this).closest('tr').remove();
+            });
 
         </script>
     </head>
@@ -99,10 +103,10 @@
         <% } else {%>
         <h1> <%=a%></h1>
         <% }%>
-        
+
         <% Date date = new Date();
-           Object[] tipo = (Object[]) session.getAttribute("tipo");
-           String id_global = (String) session.getAttribute("id_global");
+            Object[] tipo = (Object[]) session.getAttribute("tipo");
+            String id_global = (String) session.getAttribute("id_global");
             DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
             String fecha = "Fecha: " + dateFormat.format(date);%>
         <title>Mod/Baja Poliza></title>
@@ -113,67 +117,67 @@
             <button id="bt_delall" class="btn btn-default">Eliminar todo</button>
             <form role="form" name="form" id = "form" method="post" action="ModPoliza">
                 <select name="periodo">
-                    <%if (tipo[1].toString().equals("1")){%>
-                        <option value ="1" selected = "true">01-Enero</option>
-                    <%}else{%>
+                    <%if (tipo[1].toString().equals("1")) {%>
+                    <option value ="1" selected = "true">01-Enero</option>
+                    <%} else {%>
                     <option value ="1" >01-Enero</option>
                     <%}%>
-                    <%if (tipo[1].toString().equals("2")){%>
-                        <option value ="2" selected = "true">02-Febrero</option>
-                    <%}else{%>
-                       <option value ="2">02-Febrero</option>
+                    <%if (tipo[1].toString().equals("2")) {%>
+                    <option value ="2" selected = "true">02-Febrero</option>
+                    <%} else {%>
+                    <option value ="2">02-Febrero</option>
                     <%}%>
-                    <%if (tipo[1].toString().equals("3")){%>
-                        <option value ="3" selected = "true">03-Marzo</option>
-                    <%}else{%>
+                    <%if (tipo[1].toString().equals("3")) {%>
+                    <option value ="3" selected = "true">03-Marzo</option>
+                    <%} else {%>
                     <option value ="3">03-Marzo</option>
                     <%}%>
-                    <%if (tipo[1].toString().equals("4")){%>
-                        <option value ="4" selected = "true">04-Abril</option>
-                    <%}else{%>
+                    <%if (tipo[1].toString().equals("4")) {%>
+                    <option value ="4" selected = "true">04-Abril</option>
+                    <%} else {%>
                     <option value ="4">04-Abril</option>
                     <%}%>
-                    <%if (tipo[1].toString().equals("5")){%>
-                        <option value ="5" selected = "true">05-Mayo</option>
-                    <%}else{%>
+                    <%if (tipo[1].toString().equals("5")) {%>
+                    <option value ="5" selected = "true">05-Mayo</option>
+                    <%} else {%>
                     <option value ="5">05-Mayo</option>
                     <%}%>
-                    <%if (tipo[1].toString().equals("6")){%>
-                         <option value ="6" selected = "true">06-Junio</option>
-                    <%}else{%>
+                    <%if (tipo[1].toString().equals("6")) {%>
+                    <option value ="6" selected = "true">06-Junio</option>
+                    <%} else {%>
                     <option value ="6">06-Junio</option>
                     <%}%>
-                    <%if (tipo[1].toString().equals("7")){%>
-                         <option value ="7" selected = "true">07-Julio</option>
-                    <%}else{%>
-                     <option value ="7">07-Julio</option>
+                    <%if (tipo[1].toString().equals("7")) {%>
+                    <option value ="7" selected = "true">07-Julio</option>
+                    <%} else {%>
+                    <option value ="7">07-Julio</option>
                     <%}%>
-                    <%if (tipo[1].toString().equals("8")){%>
-                        <option value ="8" selected = "true">08-Agosto</option>
-                    <%}else{%>
+                    <%if (tipo[1].toString().equals("8")) {%>
+                    <option value ="8" selected = "true">08-Agosto</option>
+                    <%} else {%>
                     <option value ="8">08-Agosto</option>
                     <%}%>
-                    <%if (tipo[1].toString().equals("9")){%>
-                        <option value ="9" selected = "true">09-Semptiembre</option>
-                    <%}else{%>
+                    <%if (tipo[1].toString().equals("9")) {%>
+                    <option value ="9" selected = "true">09-Semptiembre</option>
+                    <%} else {%>
                     <option value ="9">09-Semptiembre</option>
                     <%}%>
-                    <%if (tipo[1].toString().equals("10")){%>
-                        <option value ="10" selected = "true">10-Octubre</option>
-                    <%}else{%>
+                    <%if (tipo[1].toString().equals("10")) {%>
+                    <option value ="10" selected = "true">10-Octubre</option>
+                    <%} else {%>
                     <option value ="10">10-Octubre</option>
                     <%}%>
-                    <%if (tipo[1].toString().equals("11")){%>
-                        <option value ="11" selected = "true">11-Novimebre</option>
-                    <%}else{%>
-                     <option value ="11">11-Novimebre</option>
+                    <%if (tipo[1].toString().equals("11")) {%>
+                    <option value ="11" selected = "true">11-Novimebre</option>
+                    <%} else {%>
+                    <option value ="11">11-Novimebre</option>
                     <%}%>
-                    <%if (tipo[1].toString().equals("12")){%>
-                         <option value ="12" selected = "true">12-Diciembre</option>
-                    <%}else{%>
+                    <%if (tipo[1].toString().equals("12")) {%>
+                    <option value ="12" selected = "true">12-Diciembre</option>
+                    <%} else {%>
                     <option value ="12">12-Diciembre</option>
                     <%}%>
-                    
+
                 </select>
                 <table border="1" id="tabla" style="display:inline-block;">
                     <thead>
@@ -182,29 +186,31 @@
                             <td class="tds">Concepto</td>
                             <td class="tds">Abono</td>
                             <td class="tds">Cargo</td>
+                            <td class="tds">Eliminar</td>
                         </tr>
-                        <%Object[] mov = (Object[]) session.getAttribute("movimientos"); 
-                        for (int ai = 0; ai < mov.length; ai=ai+4) {%>
+                        <%Object[] mov = (Object[]) session.getAttribute("movimientos");
+                            for (int ai = 0; ai < mov.length; ai = ai + 4) {%>
                         <tr id = "cuerpo">
                             <td style="width: 7.0%; min-width: 7.0%;"><select name="cuenta[]" required> 
                                     <%for (int i = 0; i < r.length; i++) { %>
-                                    <% if (mov[ai].toString().equals(s[i].toString())){%>
-                                        <option value = "<%=s[i]%>" selected="true"><%=r[i]%> </option>
-                                    <%}else{%>
-                                        <option value = "<%=s[i]%>"><%=r[i]%> </option>
+                                    <% if (mov[ai].toString().equals(s[i].toString())) {%>
+                                    <option value = "<%=s[i]%>" selected="true"><%=r[i]%> </option>
+                                    <%} else {%>
+                                    <option value = "<%=s[i]%>"><%=r[i]%> </option>
                                     <%}%>
                                     <%}%>
                                 </select></td>
-                            <td style="width: 7.0%; min-width: 7.0%;"><input type="text" name="concepto[]" maxlength = "20" placeholder="Concepto "  style="text-align: center; min-width: 100%; width:100%;" value ="<%=mov[ai+1]%>"></td>
-                            <td style="width: 7.0%; min-width: 7.0%;"><input type="text" name="abono[]" maxlength="30" placeholder="Abono"  style="text-align: center; min-width: 100%; width:100%;" onchange="SumarAutomatico(this.value);" value ="<%=mov[ai+2]%>"></td>
-                            <td style="width: 7.0%; min-width: 7.0%;"><input type="text" name="cargo[]" maxlength="25" placeholder="Cargo"  style="text-align: center; min-width: 100%; width:100%;" onchange="SumarAutomatico2(this.value);" value ="<%=mov[ai+3]%>"></td>
+                            <td style="width: 7.0%; min-width: 7.0%;"><input type="text" name="concepto[]" maxlength = "20" placeholder="Concepto "  style="text-align: center; min-width: 100%; width:100%;" value ="<%=mov[ai + 1]%>"></td>
+                            <td style="width: 7.0%; min-width: 7.0%;"><input type="text" name="abono[]" maxlength="30" placeholder="Abono"  style="text-align: center; min-width: 100%; width:100%;" onchange="SumarAutomatico(this.value);" value ="<%=mov[ai + 2]%>"></td>
+                            <td style="width: 7.0%; min-width: 7.0%;"><input type="text" name="cargo[]" maxlength="25" placeholder="Cargo"  style="text-align: center; min-width: 100%; width:100%;" onchange="SumarAutomatico2(this.value);" value ="<%=mov[ai + 3]%>"></td>
+                            <td style="width: 7.0%; min-width: 7.0%;"><input type="button" class="borrar" value="Eliminar" style="min-width: 100%; width:100%;"/></td>
                         </tr>
                         <%}%>
                     </thead>
                 </table>
                 <button id="aceptar" name="aceptar" type="button" onclick="comprobar();" 
                         ><b>Insertar registros</b></button>
-                        <input type="hidden" value="<%=id_global%>" name="id_poliza"> 
+                <input type="hidden" value="<%=id_global%>" name="id_poliza"> 
             </form>
             <span>Total Abonos: </span> <span id="MiTotal"></span> </br>
             <span>Total cargos: </span> <span id="MiTotal2"></span>

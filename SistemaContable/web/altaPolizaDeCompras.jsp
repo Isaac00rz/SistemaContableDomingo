@@ -62,6 +62,7 @@
                 fila += '<td style="width: 7.0%; min-width: 7.0%;"><input type="text" name="concepto[]" maxlength = "20" placeholder="Concepto "  style="text-align: center; min-width: 100%; width:100%;"></td>'
                 fila += '<td style="width: 7.0%; min-width: 7.0%;"><input type="text" name="abono[]" maxlength="30" placeholder="Abono"  style="text-align: center; min-width: 100%; width:100%;" onchange="SumarAutomatico(this.value);"></td>'
                 fila += '<td style="width: 7.0%; min-width: 7.0%;"><input type="text" name="cargo[]" maxlength="25" placeholder="Cargo"  style="text-align: center; min-width: 100%; width:100%;" onchange="SumarAutomatico2(this.value);"></td>'
+                fila += '<td style="width: 7.0%; min-width: 7.0%;"><input type="button" class="borrar" value="Eliminar" style="min-width: 100%; width:100%;"/></td>'
                 fila += '</tr>'
                 $('#tabla').append(fila);
 
@@ -73,6 +74,10 @@
 
             }
 
+            $(document).on('click', '.borrar', function (event) {
+                event.preventDefault();
+                $(this).closest('tr').remove();
+            });
 
         </script>
     </head>
@@ -99,7 +104,7 @@
         <% } else {%>
         <h1> <%=a%></h1>
         <% }%>
-        
+
         <% Date date = new Date();
             DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
             String fecha = "Fecha: " + dateFormat.format(date);%>
@@ -131,6 +136,7 @@
                             <td class="tds">Concepto</td>
                             <td class="tds">Abono</td>
                             <td class="tds">Cargo</td>
+                            <td class="tds">Eliminar</td>
                         </tr>
 
                         <tr id = "cuerpo">
@@ -138,6 +144,7 @@
                             <td style="width: 7.0%; min-width: 7.0%;"><input type="text" name="concepto[]" maxlength = "20" placeholder="Concepto "  style="text-align: center; min-width: 100%; width:100%;"></td>
                             <td style="width: 7.0%; min-width: 7.0%;"><input type="text" name="abono[]" maxlength="30" placeholder="Abono"  style="text-align: center; min-width: 100%; width:100%;" onchange="SumarAutomatico(this.value);"></td>
                             <td style="width: 7.0%; min-width: 7.0%;"><input type="text" name="cargo[]" maxlength="25" placeholder="Cargo"  style="text-align: center; min-width: 100%; width:100%;" onchange="SumarAutomatico2(this.value);"></td>
+                            <td style="width: 7.0%; min-width: 7.0%;"><input type="button" class="borrar" value="Eliminar" style="min-width: 100%; width:100%;"/></td>
                         </tr>
                     </thead>
                 </table>
