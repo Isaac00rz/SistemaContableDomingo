@@ -60,7 +60,7 @@
                     Object[] s = (Object[]) session.getAttribute("valor");
                     for (int i = 0; i < r.length; i++) {%><option value = "<%=s[i]%>"><%=r[i]%> </option><%}%></select></td>';
                 fila += '<td style="width: 7.0%; min-width: 7.0%;"><input type="text" name="concepto[]" maxlength = "20" placeholder="Concepto "  style="text-align: center; min-width: 100%; width:100%;"></td>'
-                fila += '<td style="width: 7.0%; min-width: 7.0%;"><input type="text" name="abono[]" maxlength="30" placeholder="Abono"  style="text-align: center; min-width: 100%; width:100%;" onchange="SumarAutomatico(this.id);"></td>'
+                fila += '<td style="width: 7.0%; min-width: 7.0%;"><input type="text" name="abono[]" maxlength="30" placeholder="Abono"  style="text-align: center; min-width: 100%; width:100%;" onchange="SumarAutomatico(this.value);"></td>'
                 fila += '<td style="width: 7.0%; min-width: 7.0%;"><input type="text" name="cargo[]" maxlength="25" placeholder="Cargo"  style="text-align: center; min-width: 100%; width:100%;" onchange="SumarAutomatico2(this.value);"></td>'
                 fila += '</tr>'
                 $('#tabla').append(fila);
