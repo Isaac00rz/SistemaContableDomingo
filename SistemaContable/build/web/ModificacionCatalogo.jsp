@@ -25,6 +25,7 @@
                     <li><a href="ModCatalogo"><span class="tercero"><i class="icon icon-cloud"> </i></span>Modificacion</a></li>
                     <li><a href="BajaCatalogo"><span class="cuarto"><i class="icon icon-superscript"> </i></span>Baja</a></li>
                     <li><a href="VerCatalogo"><span class="quinto"><i class="icon icon-superscript"> </i></span>Ver</a></li>
+                    <li><a href="SaldoInicial"><span class="quinto"><i class="icon icon-superscript"> </i></span>Saldo Inicial</a></li>
                 </ul>
             </nav>
         </header>

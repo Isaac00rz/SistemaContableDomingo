@@ -75,12 +75,15 @@ public class BalanzeGeneral extends HttpServlet {
         for (int i = 0; i < cuentasMenor.size(); i++) {
             consulta = "select cargo,abono from PolizasCargos where noCuenta = '" + cuentasMenor.get(i)+"';";
             datos2 = conexionDB.consultaCompleta(consulta, 2);
-            for (int j = 0; j < datos.length; j=j+2) {
-                totalesD[relaciones[i]] = totalesD[relaciones[i]] + Float.parseFloat(datos[j].toString());
-                totalesH[relaciones[i]] = totalesH[relaciones[i]] + Float.parseFloat(datos[j+1].toString());
+            for (int j = 0; j < datos2.length; j=j+2) {
+                totalesD[relaciones[i]] = totalesD[relaciones[i]] + Float.parseFloat(datos2[j].toString());
+                totalesH[relaciones[i]] = totalesH[relaciones[i]] + Float.parseFloat(datos2[j+1].toString());
             }
         }
-        
+        for (int i = 0; i < totalesD.length; i++) {
+            System.out.println("Total Deudor: "+totalesD[i]);
+            System.out.println("Total Haber: "+totalesH[i]);
+        }
         conexionDB.cerrarConexion();
     }
 

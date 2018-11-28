@@ -1,20 +1,20 @@
 <%-- 
-    Document   : ModificacionCatalogo
-    Created on : 11/11/2018, 08:07:58 PM
+    Document   : AltaCatalogo
+    Created on : 11/11/2018, 12:41:55 PM
     Author     : IsaacUlises
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-        <head>
+    <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Modificacion Catalogo Cuentae</title>
+        <title>Alta Catalogo Cuentae</title>
         <style type="text/css" media="screen">
             /*la directiva include copia el contenido de un archivo y lo incrusta en la pagina*/
             <%@ include file="estilos/Barra.css" %>
             <%@ include file="estilos/fonts.css" %>
-            <%@ include file="estilos/tablas.css" %>
+            <%@ include file="estilos/Formulario.css" %>
         </style>
     <div id="navegador">
         <header>
@@ -30,24 +30,25 @@
             </nav>
         </header>
     </div>
-    </head>
-    <body>
-        <table>
-            <tr>
-                <th>No Cuenta</th>
-                <th>Nombre</th>
-                <th>Tipo</th>
-                <th>Accion</th>
-            </tr>
-            <% Object[] r = (Object[]) session.getAttribute("cuentas");
-            for (int i = 0; i < r.length; i=i+3) {%>
-        <tr>
-            <th><%= r[i]%></th>
-            <th><%= r[i+1]%></th>
-            <th><%= r[i+2]%></th>
-            <th><a href="ModCuenta.jsp?noCuenta=<%= r[i]%>">Modificar</a></th>
-        <% }%>
-        </tr>    
-        </table>
-    </body>
+    <%Object[] cuentas = (Object[]) session.getAttribute("cuentasM");%>
+    <% String r = (String) session.getAttribute("var8");
+        if (r == null) { %>
+    <h3></h3>
+    <% } else {%>
+    <h1> <%=r%></h1>
+    <% }%>
+</head>
+<form  method="POST" action="SaldoInicial">
+    <fieldset>
+        <legend>Saldo inicial</legend>
+        <p>
+            <label for ="cuenta">No. Cuenta</label>: <select name="cuenta" required> <%for (int i = 0; i < cuentas.length; i++) {%><option value = "<%=cuentas[i]%>"><%=cuentas[i]%> </option><%}%></select><br/> 
+            <label for ="cantidad">Cantidad</label>: <input type="number" name = "cantidad" id = "cantidad" size = "30" maxlength = "40" placeholder="Cantidad" required><br/> 
+        <hr>
+        <div class = "boton">
+            <input type="submit" value="Enviar" ></code>	
+        </div>
+        </p>
+    </fieldset>
+</form>
 </html>
