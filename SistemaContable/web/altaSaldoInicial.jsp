@@ -43,7 +43,8 @@
         <legend>Saldo inicial</legend>
         <p>
             <label for ="cuenta">No. Cuenta</label>: <select name="cuenta" required> <%for (int i = 0; i < cuentas.length; i++) {%><option value = "<%=cuentas[i]%>"><%=cuentas[i]%> </option><%}%></select><br/> 
-            <label for ="cantidad">Cantidad</label>: <input type="number" name = "cantidad" id = "cantidad" size = "30" maxlength = "40" placeholder="Cantidad" required><br/> 
+            <label for ="debe">Debe</label>: <input type="number" name = "debe" id = "debe" size = "30" maxlength = "40" placeholder="Debe" required><br/> 
+            <label for ="haber">Haber</label>: <input type="number" name = "haber" id = "haber" size = "30" maxlength = "40" placeholder="Haber" required><br/> 
         <hr>
         <div class = "boton">
             <input type="submit" value="Enviar" ></code>	

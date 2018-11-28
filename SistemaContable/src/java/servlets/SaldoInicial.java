@@ -85,10 +85,10 @@ public class SaldoInicial extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String noCuenta = request.getParameter("cuenta");
-        String cantidad = request.getParameter("cantidad");
-
+        String debe = request.getParameter("debe");
+        String haber = request.getParameter("haber");
         String sql = "insert into CatalogoCuentasMovimientos values "
-                + "('" + noCuenta + "'," + cantidad + ",0);";
+                + "('" + noCuenta + "'," + haber + ","+debe+");";
 
         if (insertarCatalogo(sql)) {
             Object[] datos;
