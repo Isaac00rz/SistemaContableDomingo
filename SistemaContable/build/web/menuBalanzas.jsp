@@ -17,11 +17,9 @@
                 <nav>	
                     <ul> 
                         <li><a href="Menu.jsp"><span class="primero"><i class="icon icon-home"></i></span>HOME</a></li>
-                        <li><a href="MenuCatalogo.jsp"><span class="segundo"><i class="icon icon-clipboard"> </i></span>Catalogo Cuentas</a></li>
-                        <li><a href="menuPolizas.jsp"><span class="tercero"><i class="icon icon-cloud"> </i></span>Polizas</a></li>
-                        <li><a href="otro.jsp"><span class="cuarto"><i class="icon icon-superscript"> </i></span>Contabilizar</a></li>
-                        <li><a href="menuBalanzas.jsp"><span class="quinto"><i class="icon icon-lightbulb"> </i></span>Balanzas</a></li>
-                        <li><a href="otro.js"><span class="sexto"><i class="icon icon-tools"> </i></span>Otro</a></li>
+                        <li><a href="BalanzeGeneral"><span class="segundo"><i class="icon icon-clipboard"> </i></span>Balanza Comprobacion</a></li>
+                        <li><a href="menuPolizas.jsp"><span class="tercero"><i class="icon icon-cloud"> </i></span>Diario General</a></li>
+                        <li><a href="otro.jsp"><span class="cuarto"><i class="icon icon-superscript"> </i></span>Estado de resultado</a></li>
                     </ul>
                 </nav>
             </header>

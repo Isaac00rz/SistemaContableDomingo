@@ -23,14 +23,14 @@ DEFAULT CHARACTER SET = utf8;
 
 CREATE TABLE CatalogoCuentasMovimientos(
 noCuenta varchar(40) NOT NULL,
-debe double,
-haber double,
-PRIMARY KEY (NoCuenta),
+abono double,
+cargo double,
 CONSTRAINT CatalogoMovi_F
 FOREIGN KEY (noCuenta)
 REFERENCES SistemaContable.CatalogoCuentas (noCuenta)
 ON DELETE NO ACTION 
-ON UPDATE NO ACTION)
+ON UPDATE NO ACTION
+)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
