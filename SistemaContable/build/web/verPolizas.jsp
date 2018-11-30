@@ -1,22 +1,21 @@
 <%-- 
-    Document   : BaCuenta
-    Created on : 11/11/2018, 10:33:46 PM
+    Document   : BajaModPolizas
+    Created on : 25/11/2018, 06:34:24 PM
     Author     : IsaacUlises
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-        <head>
+    <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Baja Catalogo Cuentae</title>
+        <title>Ver Catalogo Cuentae</title>
         <style type="text/css" media="screen">
             /*la directiva include copia el contenido de un archivo y lo incrusta en la pagina*/
             <%@ include file="estilos/Barra.css" %>
             <%@ include file="estilos/fonts.css" %>
-            <%@ include file="estilos/Formulario.css" %>
+            <%@ include file="estilos/tablas.css" %>
         </style>
-        <% String noPoliza = request.getParameter("noPoliza"); %>
     <div id="navegador">
         <header>
             <nav>	
@@ -29,23 +28,35 @@
                         <li><a href="altaPolizaDeVentas.jsp"><span class="sexto"><i class="icon icon-tools"> </i></span>Poliza de ventas</a></li>
                         <li><a href="BajaModPolizas"><span class="sexto"><i class="icon icon-tools"> </i></span>Modi/Baja</a></li>
                         <li><a href="verPolizas"><span class="segundo"><i class="icon icon-tools"> </i></span>Ver</a></li>
+                       
                 </ul>
             </nav>
         </header>
     </div>
-    <body>
-        <form  method="POST" action="BaCuenta">
-    <fieldset>
-        <p>
-        <h1>¿Eliminar?</h1>
-            <label for ="noCuenta">No. Poliza</label>: <input type="text" name = "noCuenta" id = "noCuenta" value ="<%=noPoliza%>"  disabled><br/> 
-            <label for ="noCuentaV"></label> <input type="hidden" name = "noPoliza" id = "noCuentaV" value ="<%=noPoliza%>" >
-        <hr>
-        <div class = "boton">
-            <input type="submit" value="Borrar:" ></code>	
-        </div>
-        </p>
-    </fieldset>
-</form>
-    </body>
+</head>
+<body>
+    <table>
+        <tr>
+            <th>ID Poliza</th>
+            <th>Tipo</th>
+            <th>Periodo</th>
+            <th>Fecha</th>
+            <th>Ver</th>
+        </tr>
+        <% Object[] r = (Object[]) session.getAttribute("polizas");
+                for (int i = 0; i < r.length; i = i + 4) {%>
+         <form role="form" name="form" id = "form" method="post" action="verPolizas">      
+        <tr>
+            <th><input type="text" name="id_p" value="<%= r[i]%>" disabled></th>
+            <th><%= r[i + 1]%></th>
+            <th><%= r[i + 2]%></th>
+            <th><%= r[i + 3]%></th>
+            <td><input type="submit" value="Ver"></td>
+            <th><input type="hidden" name="id_poliza" value="<%= r[i]%>"></th>
+            
+        </tr>  
+        </form>
+        <% }%>
+    </table>
+</body>
 </html>

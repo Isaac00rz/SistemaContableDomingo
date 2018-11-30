@@ -98,26 +98,21 @@
                 </nav>
             </header>
         </div>
-        <% String a = (String) session.getAttribute("va4");
-            if (a == null) { %>
-        <h3></h3>
-        <% } else {%>
-        <h1> <%=a%></h1>
-        <% }%>
 
         <% Date date = new Date();
             Object[] tipo = (Object[]) session.getAttribute("tipo");
-            String id_global = (String) session.getAttribute("id_global");
             DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-            String fecha = "Fecha: " + dateFormat.format(date);%>
+            String fecha = "Fecha: " +tipo[2].toString();
+            float totalA = (Float) session.getAttribute("totalA");
+            float totalB = (Float) session.getAttribute("totalB");
+        %>
+            
         <title>Mod/Baja Poliza></title>
         <h4>Poliza de <%=tipo[0]%></h4>
         <h4> <%=fecha%></h4>
         <section class="contenido">
-            <button id="bt_add" class="btn btn-default">Agregar</button>
-            <button id="bt_delall" class="btn btn-default">Eliminar todo</button>
             <form role="form" name="form" id = "form" method="post" action="ModPoliza">
-                <select name="periodo">
+                <select name="periodo" disabled>
                     <%if (tipo[1].toString().equals("1")) {%>
                     <option value ="1" selected = "true">01-Enero</option>
                     <%} else {%>
@@ -187,12 +182,11 @@
                             <td class="tds">Concepto</td>
                             <td class="tds">Abono</td>
                             <td class="tds">Cargo</td>
-                            <td class="tds">Eliminar</td>
                         </tr>
                         <%Object[] mov = (Object[]) session.getAttribute("movimientos");
                             for (int ai = 0; ai < mov.length; ai = ai + 4) {%>
                         <tr id = "cuerpo">
-                            <td style="width: 7.0%; min-width: 7.0%;"><select name="cuenta[]" required> 
+                            <td style="width: 7.0%; min-width: 7.0%;"><select name="cuenta[]" disabled> 
                                     <%for (int i = 0; i < r.length; i++) { %>
                                     <% if (mov[ai].toString().equals(s[i].toString())) {%>
                                     <option value = "<%=s[i]%>" selected="true"><%=r[i]%> </option>
@@ -201,64 +195,15 @@
                                     <%}%>
                                     <%}%>
                                 </select></td>
-                            <td style="width: 7.0%; min-width: 7.0%;"><input type="text" name="concepto[]" maxlength = "20" placeholder="Concepto "  style="text-align: center; min-width: 100%; width:100%;" value ="<%=mov[ai + 1]%>"></td>
-                            <td style="width: 7.0%; min-width: 7.0%;"><input type="text" name="abono[]" maxlength="30" placeholder="Abono"  style="text-align: center; min-width: 100%; width:100%;" onchange="SumarAutomatico(this.value);" value ="<%=mov[ai + 2]%>"></td>
-                            <td style="width: 7.0%; min-width: 7.0%;"><input type="text" name="cargo[]" maxlength="25" placeholder="Cargo"  style="text-align: center; min-width: 100%; width:100%;" onchange="SumarAutomatico2(this.value);" value ="<%=mov[ai + 3]%>"></td>
-                            <td style="width: 7.0%; min-width: 7.0%;"><input type="button" class="borrar" value="Eliminar" style="min-width: 100%; width:100%;"/></td>
+                            <td style="width: 7.0%; min-width: 7.0%;"><input type="text" name="concepto[]" maxlength = "20" placeholder="Concepto "  style="text-align: center; min-width: 100%; width:100%;" value ="<%=mov[ai + 1]%>" disabled></td>
+                            <td style="width: 7.0%; min-width: 7.0%;"><input type="text" name="abono[]" maxlength="30" placeholder="Abono"  style="text-align: center; min-width: 100%; width:100%;"  value ="<%=mov[ai + 2]%> " disabled></td>
+                            <td style="width: 7.0%; min-width: 7.0%;"><input type="text" name="cargo[]" maxlength="25" placeholder="Cargo"  style="text-align: center; min-width: 100%; width:100%;"  value ="<%=mov[ai + 3]%>" disabled></td>>
                         </tr>
                         <%}%>
                     </thead>
                 </table>
-                <button id="aceptar" name="aceptar" type="button" onclick="comprobar();" 
-                        ><b>Insertar registros</b></button>
-                <input type="hidden" value="<%=id_global%>" name="id_poliza"> 
             </form>
-            <span>Total Abonos: </span> <span id="MiTotal"></span> </br>
-            <span>Total cargos: </span> <span id="MiTotal2"></span>
+            <span>Total Abonos: <%=totalA%></span> <span id="MiTotal"></span> </br>
+            <span>Total cargos: <%=totalB%></span> <span id="MiTotal2"></span>
     </body>
-    <script type="text/javascript">
-        /* Funcion suma. */
-        function SumarAutomatico(valor) {
-            var TotalSuma = 0;
-            valor = parseFloat(valor); // Convertir a numero entero (número).
-            TotalSuma = document.getElementById('MiTotal').innerHTML;
-            // Valida y pone en cero "0".
-            TotalSuma = (TotalSuma == null || TotalSuma == undefined || TotalSuma == "") ? 0 : TotalSuma;
-            /* Variable genrando la suma. */
-            TotalSuma = (parseFloat(TotalSuma) + parseFloat(valor));
-            // Escribir el resultado en una etiqueta "span".
-            document.getElementById('MiTotal').innerHTML = TotalSuma;
-        }
-
-    </script>
-    <script type="text/javascript">
-        /* Funcion suma. */
-        function SumarAutomatico2(valor) {
-            var TotalSuma = 0;
-            valor = parseFloat(valor); // Convertir a numero entero (número).
-            TotalSuma = document.getElementById('MiTotal2').innerHTML;
-            // Valida y pone en cero "0".
-            TotalSuma = (TotalSuma == null || TotalSuma == undefined || TotalSuma == "") ? 0 : TotalSuma;
-            /* Variable genrando la suma. */
-            TotalSuma = (parseFloat(TotalSuma) + parseFloat(valor));
-            // Escribir el resultado en una etiqueta "span".
-            document.getElementById('MiTotal2').innerHTML = TotalSuma;
-        }
-
-    </script>
-    <script type="text/javascript">
-        function comprobar() {
-            /* var TotalSumaA = 0;
-             var TotalSumaC = 0;
-             TotalSumaA = document.getElementById('MiTotal').innerHTML;
-             TotalSumaC = document.getElementById('MiTotal2').innerHTML;
-             if(parseInt(TotalSumaA)=== parseInt(TotalSumaC)){*/
-            document.getElementById("form").submit();
-            /*}else{
-             alert("Las sumas no coinciden");
-             }*/
-
-        }
-
-    </script>
 </html>

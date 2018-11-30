@@ -28,6 +28,7 @@
                         <li><a href="altaPolizaDeCompras.jsp"><span class="quinto"><i class="icon icon-lightbulb"> </i></span>Poliza de Compras</a></li>
                         <li><a href="altaPolizaDeVentas.jsp"><span class="sexto"><i class="icon icon-tools"> </i></span>Poliza de ventas</a></li>
                         <li><a href="BajaModPolizas"><span class="sexto"><i class="icon icon-tools"> </i></span>Modi/Baja</a></li>
+                        <li><a href="verPolizas"><span class="segundo"><i class="icon icon-tools"> </i></span>Ver</a></li>
                 </ul>
             </nav>
         </header>
